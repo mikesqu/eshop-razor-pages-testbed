@@ -1,0 +1,22 @@
+﻿@using MadStickWebAppTester.Data.UserEntity
+@model ApplicationUser
+
+@{
+    int amountInBasket = 0;
+    if (Model.Cart?.Products != null)
+    {
+        foreach (CartProduct item in @Model.Cart.Products)
+        {
+            amountInBasket += item.AmountInBasket;
+        }
+    }
+
+}
+@{
+
+    <a class="nav-link text-dark" asp-page="/Carts/Details" method="post" asp-route-id="@Model.Cart?.CartId">
+        Cart
+        <span id="cartAmount">@amountInBasket</span>
+    </a>
+
+}

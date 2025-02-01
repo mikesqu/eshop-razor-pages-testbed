@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MadStickWebAppTester</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        #product-images {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+            justify-content: center;
+        }
+
+        #main-product-image {
+            max-width: 500px;
+            flex: 3 1 auto;
+        }
+
+        #product-gallery {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .product-gallery-item {}
+
+        .product-gallery-item img {
+            max-width: 120px;
+        }
+
+        .product-listing {
+            border: rgb(211, 211, 211) 1px solid;
+        }
+
+        article img {
+            max-width: 100%;
+        }
+
+        #container img {
+            max-width: 100%;
+        }
+
+        #env-info {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #banner {
+            background-image: url("../images/banner.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flow-root;
+        }
+
+        #banner h3 {
+            --widthA: 100vw;
+            background-color: rgba(0, 0, 0, 0.50);
+            border: 1px gray;
+            border-radius: 25px;
+            color: #c7c7c7 !important;
+            font-size: calc((var(--widthA) / 100) * 7);
+            text-align: center;
+            margin: 0;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+
+        #most-popular-items div h3 {
+            font-size: 3em;
+            text-align: center;
+        }
+
+        #most-popular-items .product-image {
+            border: 1px solid gray;
+        }
+
+        #most-popular-items .product-info {
+            border: 1px solid gray;
+        }
+
+        #most-popular-items div,
+        #most-popular-items article {
+            min-height: 15em;
+        }
+
+
+
+        main {
+            padding: 0;
+            margin: 0;
+        }
+
+        main main {
+            padding: 0.5em;
+            margin: 0.5em;
+        }
+
+        /* input[type="text"] {
+            max-width: 11em;
+            min-width: 8em;
+        } */
+
+        #products img {
+            max-width: 100%;
+        }
+
+
+        #products article {
+            background-color: rgba(71, 71, 71, 0.61);
+        }
+
+        /* main main article img {
+            max-width: 25%;
+        }
+        */
+        main #banner img {
+            max-width: 100%;
+        }
+
+        main #conversion-ads #why-our-products img {
+            max-width: 95%;
+            display: block;
+        }
+
+        main #conversion-ads #most-popular-items img {
+            max-width: 95%;
+        }
+
+        main main form ul li {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        main main table {
+            max-height: 1em;
+        }
+
+        #aside-content form ul li {
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .list-group-item .list-group-item {
+            background-color: white !important;
+        }
+
+        .dark-mode {
+            background-color: rgba(0, 0, 0, 0.76);
+            background-image: url(../images/pattern-dark.png);
+            color: rgb(224, 224, 224);
+        }
+
+        .dark-mode #banner h3 {
+            color: rgb(224, 224, 224);
+        }
+
+        @@media screen and (min-width:575px) {
+
+            #products article {
+                max-width: 43%;
+            }
+
+            main {
+                padding: 0.4em;
+                margin: 0.4em;
+            }
+
+        }
+
+        @@media screen and (min-width:800px) {
+            main #conversion-ads #why-our-products img {
+                float: left;
+                max-width: 25%;
+            }
+
+            /* main #conversion-ads p{
+                clear: both;
+            }
+            #most-popular-items {
+                clear: both;
+            } */
+        }
+
+        @@media screen and (min-width:990px) {
+
+            #products article {
+                max-width: 29%;
+            }
+
+        }
+
+
+        @@media screen and (min-width: 2600px) {
+            #banner {
+                background-size: contain;
+            }
+        }
+    </style>
+
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DX5W493NYC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DX5W493NYC');
+</script>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-xl navbar-light bg-light mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">MadStickWebAppTester</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Products/Index"
+                                asp-route-pageIndex="1">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area=""
+                                asp-page="/StorageProducts/Index">StorageProducts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/StorageUnits/Index">StorageUnits</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Carts/Index">Carts</a>
+                        </li>
+                        @* <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/CartProducts/Index">CartProducts</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Users/Index">Users</a>
+                        </li> *@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/About/Index">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Blog/Index">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/FAQ/Index">FAQ</a>
+                        </li>
+                        @* <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area=""
+                        asp-page="/EndpointPermissions/Index">Permissions</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Endpoints/Index">Endpoints</a>
+                        </li> *@
+                    </ul>
+                    @* view components: *@
+                    @* example of a partial: <partial name="_LoginPartial"/>*@
+                    <vc:cart show-picture="0"></vc:cart>
+                    <vc:user show-picture="1"></vc:user>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - MadStickWebAppTester - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+
+        @* custom tag helper *@
+        <env-info add-os add-machine add-env-var></env-info>
+    </footer>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

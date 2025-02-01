@@ -1,0 +1,93 @@
+﻿@page "page/{pageIndex}"
+@model MadStickWebAppTester.Pages.Products.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+
+    static string GenerateProdcutLink()
+    {
+        int pN = new Random().Next(1, 4);
+        string imgString = "/images/hoodie" + pN + ".jpg";
+        return imgString;
+    }
+
+
+}
+
+<h1>Index</h1>
+@if (Model.VM.ViewCans.CanCreate)
+{
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+}
+
+<form id="filterForm" asp-page="./Index" method="get">
+    <input type="text" name="searchString" value="@Model.VM.Filters.CurrentFilter" />
+    <input type="submit" value="search" />
+    <a asp-page="./Index"> Back to full List</a>
+    <a asp-page="./Index" asp-route-sortOrder="@Model.VM.Filters.NameDescriptionSort">
+        @Html.DisplayNameFor(model => model.VM.MadStickProducts[0].Name)
+    </a>
+    <a>
+        @Html.DisplayNameFor(model => model.VM.MadStickProducts[0].Description)
+    </a>
+    <a asp-page="./Index" asp-route-sortOrder="@Model.VM.Filters.PriceSort">
+        @Html.DisplayNameFor(model => model.VM.MadStickProducts[0].Price)
+    </a>
+</form>
+
+<div id="product-container row " class="d-flex p-3 bg-light justify-content-around flex-wrap">
+
+    @foreach (var item in Model.VM.MadStickProducts)
+    {
+        <article class="product-listing col-11 col-sm-5 col-lg-3 m-3">
+            <section class="product-listing-body d-flex flex-wrap">
+                <a asp-page="./Details" asp-route-productName="@item.Name">
+
+                    <img src="@GenerateProdcutLink()" />
+                </a>
+                <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                <h3>@Html.DisplayFor(modelItem => item.Description)</h3>
+                @* \/ XSS attack example with Html.Raw \/ *@
+                @* <h3>@Html.Raw(item.Description)</h3> *@
+                <h3>@Html.DisplayFor(modelItem => item.Price)</h3>
+                <section>
+                    @if (Model.VM.ViewCans.CanEdit)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.MadStickProductId">Edit</a> <text>|</text>
+                    }
+                    @if (Model.VM.ViewCans.CanViewDetail)
+                    {
+                        <a asp-page="./Details" asp-route-productName="@item.Name">Details</a> <text>|</text>
+                    }
+                    @if (Model.VM.ViewCans.CanDelete)
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.MadStickProductId">Delete</a>
+                    }
+                </section>
+            </section>
+        </article>
+    }
+</div>
+
+
+@{
+    string prevDisabled = !Model.VM.MadStickProducts.HasPreviousPage ? "disabled" : "";
+    string nextDisabled = !Model.VM.MadStickProducts.HasNextPage ? "disabled" : "";
+
+    <a asp-page="./Index" asp-route-sortOrder="@Model.VM.Filters.CurrentSort"
+    asp-route-pageIndex="@(Model.VM.MadStickProducts.PageIndex - 1)"
+    asp-route-currentFilter="@Model.VM.Filters.CurrentFilter" class="btn btn-primary @prevDisabled">
+        Previous
+    </a>
+
+    <a asp-page="./Index" asp-route-sortOrder="@Model.VM.Filters.CurrentSort"
+    asp-route-pageIndex="@(Model.VM.MadStickProducts.PageIndex + 1)"
+    asp-route-currentFilter="@Model.VM.Filters.CurrentFilter" class="btn btn-primary @nextDisabled">
+        Next
+    </a>
+
+
+
+}

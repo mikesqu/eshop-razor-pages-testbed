@@ -1,0 +1,53 @@
+﻿@page
+@using MadStickWebAppTester.Data.UserEntity
+@using System.Linq
+@model MadStickWebAppTester.Pages.UserManagment.IndexModel
+
+@{
+    ViewData["Title"] = "UserManagment";
+}
+
+<h1>UserManagement</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User id:
+            </th>
+            <th>
+                Username:
+            </th>
+            <th>
+                Claims:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (ApplicationUser user in Model.Users) {
+        <tr>
+            <td>
+                @user.Id
+            </td>
+            <td>
+                @user.UserName
+            </td>
+            <td>
+                    @foreach (var claim in Model.UserClaims.Where(u => u.UserId == user.Id).ToList())
+                    {
+                        <text>claimType: @claim.ClaimType claimValue: @claim.ClaimValue</text><br/>
+                    }
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@user.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@user.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@user.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

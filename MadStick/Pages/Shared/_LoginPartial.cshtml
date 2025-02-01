@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using MadStickWebAppTester.Data;
+@using MadStickWebAppTester.Data.UserEntity;
+@using Microsoft.EntityFrameworkCore;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject MadStickContext DbContext
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        ApplicationUser tempUser = await UserManager.GetUserAsync(User);
+
+        ApplicationUser cU = DbContext.Users.Include(u => u.Cart).First((u) => u.Id == tempUser.Id);
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity"
+           asp-page="/Account/Manage/Index" title="Manage">
+                Hello
+                @User.Identity.Name
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-page="/Carts/Details" method="post"
+           asp-route-id="@cU.Cart?.CartId">
+                Cart
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-page="/Orders/Details" method="post"
+           asp-route-userId="">
+                Orders
+            </a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-page="/Account/Logout"
+              asp-route-returnUrl="@Url.Page("/", new { area = "" })"
+              asp-area="Identity" method="post">
+                <button class="nav-link btn btn-link text-dark"
+                    type="submit">
+                    Logout
+                </button>
+            </form>
+        </li>
+
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity"
+           asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity"
+           asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

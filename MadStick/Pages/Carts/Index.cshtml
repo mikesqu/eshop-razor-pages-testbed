@@ -1,0 +1,48 @@
+﻿@page
+@model MadStickWebAppTester.Pages.Carts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Cart id:
+            </th>
+            <th>
+                User id:
+            </th>
+            <th>
+                User name:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var cart in Model.Carts) {
+        <tr>
+            <td>
+                @cart.CartId
+            </td>
+            <td>
+                @cart.UserId
+            </td>
+            <td>
+                @cart.User.UserName
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@cart.CartId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@cart.CartId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@cart.CartId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+﻿@page
+@model MadStickWebAppTester.Pages.Products.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MadStickProduct</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MadStickProductDto.Name" class="control-label"></label>
+                <input asp-for="MadStickProductDto.Name" class="form-control" />
+                <span asp-validation-for="MadStickProductDto.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MadStickProductDto.Description" class="control-label"></label>
+                <input asp-for="MadStickProductDto.Description" class="form-control" />
+                <span asp-validation-for="MadStickProductDto.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MadStickProductDto.Price" class="control-label"></label>
+                <input asp-for="MadStickProductDto.Price" class="form-control" />
+                <span asp-validation-for="MadStickProductDto.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="MadStickProductDto.IsDeleted" /> @Html.DisplayNameFor(model => model.MadStickProduct.IsDeleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index" asp-route-pageIndex="1">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

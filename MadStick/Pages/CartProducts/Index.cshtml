@@ -1,0 +1,54 @@
+﻿@page
+@model MadStickWebAppTester.Pages.CartProducts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CartProducts[0].CartId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartProducts[0].AmountInBasket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartProducts[0].Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartProducts[0].Cart)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CartProducts) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CartId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountInBasket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.MadStickProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cart.CartId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CartProductId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CartProductId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CartProductId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

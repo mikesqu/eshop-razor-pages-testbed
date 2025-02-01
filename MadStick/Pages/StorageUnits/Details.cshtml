@@ -1,0 +1,31 @@
+﻿@page
+@model MadStickWebAppTester.Pages.StorageUnits.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>StorageUnit</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StorageUnit.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StorageUnit.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StorageUnit.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StorageUnit.Location)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.StorageUnit.StorageUnitId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

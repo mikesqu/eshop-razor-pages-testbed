@@ -1,0 +1,49 @@
+﻿@page
+@model MadStickWebAppTester.Pages.StorageProducts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product: </th>
+            <th>Product Id: </th>
+            <th>Storage Unit Name:</th>
+            <th>Storage Unit Id:</th>
+            <th>Amount Left:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.StorageProducts)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.MadStickProductId</td>
+                <td>@item.StorageUnit.Name</td>
+                <td>@item.StorageUnitId</td>
+                <td>@item.AmountLeft</td>
+                <td>
+                    @if (Model.ViewCans.CanEdit)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.StorageProductId">Edit</a> <text>|</text>
+                    }
+                    @if (Model.ViewCans.CanViewDetail)
+                    {
+                        <a asp-page="./Details" asp-route-id="@item.StorageProductId">Details</a> <text>|</text>
+                    }
+                    @if (Model.ViewCans.CanDelete)
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.StorageProductId">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

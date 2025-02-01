@@ -1,0 +1,22 @@
+@page
+@model MadStickWebAppTester.Pages.Products.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Categories:</h4>
+
+    <div id="categories">
+        <a <img href="/images/upper-50.png"/>Upper</a>
+        <a <img href="/images/lower-50.png"/>Lower</a>
+        <a <img href="/images/access-50.png"/>Upper</a>
+        <a <img href="/images/disc-50.png"/>Discounted</a>
+    </div>
+
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.MadStickProduct.MadStickProductId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

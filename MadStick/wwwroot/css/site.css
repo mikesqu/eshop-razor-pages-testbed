@@ -1,0 +1,36 @@
+@font-face {
+    font-family: "Raleway cool";
+    src: url('/fonts/raleway/Raleway-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+/*@font-face {
+    font-family: "Raleway cool";
+    src: url('/fonts/raleway/Raleway-SemiBold.ttf') format('truetype');
+    font-weight: 800;
+}*/
+
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Raleway cool", 'Times New Roman', serif;
+  margin-bottom: 60px;
+}
+
+body header {
+    font-size: large;
+    font-weight: 900;
+}

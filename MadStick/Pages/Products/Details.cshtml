@@ -1,0 +1,61 @@
+﻿@page "{productName:slug}"
+@model MadStickWebAppTester.Pages.Products.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>MadStickProduct</h4>
+
+    <hr />
+
+    <section id="product-images">
+        <img id="main-product-image" src="/images/hoodie1.jpg" />
+        <section id="product-gallery">
+            <div class="product-gallery-item">
+                <img src="/images/hoodie1.jpg" />
+            </div>
+            <div class="product-gallery-item">
+                <img src="/images/hoodie2.jpg" />
+            </div>
+            <div class="product-gallery-item">
+                <img src="/images/hoodie3.jpg" />
+            </div>
+            <div class="product-gallery-item">
+                <img src="/images/hoodie4.jpg" />
+            </div>
+        </section>
+    </section>
+
+    
+
+    <div>
+        <div class="product-info">
+            @* <h4>@Html.DisplayFor(model => model.MadStickProduct.Name)</h4> *@
+            <h4>Classic Hoodie</h4>
+            @* <p>@Html.DisplayFor(model => model.MadStickProduct.Description)</p> *@
+            <p>A classic black or white hoodie that will fit to any outfit or color. This is our signature product. This was one of the first products that we produced. It's made from canvas material canvas and has tough stiching with sintetic leather insouls.</p>
+            <hr/>
+            <p>Our engineers produced this hoodie through trail and error. We spent 2 year redesiging and trying out diferent configurations. There is almost no parts of this hoodie that wasn't touched by our briliant engineers' minds</p>
+            @* <h6>@Html.DisplayFor(model => model.MadStickProduct.Price)</h6> *@
+            <h5>12 $</h5>
+            <div class="w3-col m8 s12">
+          <p><a href="/blog/details"><button class="w3-button w3-padding-large w3-white w3-border"><b>BUY</b></button></a></p>
+        </div>
+        </div>
+    </div>
+
+    <section id="links">
+        
+        <p> <a
+            href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fmsprojects.online%2Fproducts%2Fdetails%2Fblack-hoodie&text=Check%20out%20this%20insanely%20good%20product!">
+            <img src="/images/twitter.png" alt="Share on Twitter" style="max-width:50px;"/>
+        </a>Share this product on twitter</p>
+    </section>
+
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.MadStickProduct.MadStickProductId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

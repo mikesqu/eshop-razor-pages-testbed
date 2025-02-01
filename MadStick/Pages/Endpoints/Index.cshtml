@@ -1,0 +1,54 @@
+﻿@page
+@model MadStickWebAppTester.Pages.Endpoints.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Endpoint[0].Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endpoint[0].IsAllowedAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endpoint[0].IsAllowedModification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endpoint[0].Permission)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Endpoint) {
+        <tr>
+            <td>
+                @item.Value
+            </td>
+            <td>
+                @item.IsAllowedAccess
+            </td>
+            <td>
+                @item.IsAllowedModification
+            </td>
+            <td>
+                @item.Permission.EndpointPermissionId
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.EndpointId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.EndpointId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.EndpointId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
